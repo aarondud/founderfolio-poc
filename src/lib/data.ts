@@ -23,7 +23,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "HQ location - highest deal flow. Leading tech ecosystem with access to top-tier startups and investors.",
     image:
-      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200&h=200&fit=crop&fm=webp",
     priority: "High Priority",
     investments: 2,
     sentiment: "Hot Market",
@@ -37,7 +37,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "San Francisco remains our headquarters and base for product development and customer success.",
     image:
-      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200&h=200&fit=crop&fm=webp",
     priority: "Headquarters",
     investments: 0,
     sentiment: "Established",
@@ -50,7 +50,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "European expansion priority. Strong fintech hub with access to European markets and top-tier talent.",
     image:
-      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=200&h=200&fit=crop&fm=webp",
     priority: "High Priority",
     investments: 1,
     sentiment: "Emerging",
@@ -63,7 +63,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "Emerging market focus. Gateway to Asian markets with strong government support for tech startups.",
     image:
-      "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=200&h=200&fit=crop&fm=webp",
     priority: "Medium Priority",
     investments: 1,
     sentiment: "Growing",
@@ -76,7 +76,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "Asian market potential. China's financial hub with rapid tech innovation and massive market potential.",
     image:
-      "https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=200&h=200&fit=crop&fm=webp",
     priority: "Medium Priority",
     investments: 1,
     sentiment: "Strong",
@@ -89,7 +89,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "North American backup. Growing tech hub with access to North American markets and diverse talent pool.",
     image:
-      "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=200&h=200&fit=crop&fm=webp",
     priority: "Low Priority",
     investments: 1,
     sentiment: "Growing",
@@ -102,7 +102,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "Exploring African market opportunities and partnership possibilities.",
     image:
-      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=200&h=200&fit=crop&fm=webp",
     priority: "Expansion Office",
     investments: 0,
     sentiment: "Expansion",
@@ -115,7 +115,7 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
     quote:
       "Rio de Janeiro is a promising South American hub with growing startup activity and regional access.",
     image:
-      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=200&h=200&fit=crop",
+      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=200&h=200&fit=crop&fm=webp",
     priority: "Regional Office",
     investments: 0,
     sentiment: "Emerging",
@@ -201,66 +201,66 @@ export const CHART_DATA = [
 ];
 
 export const CAROUSEL_IMAGES_ROW1 = [
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=400&fit=crop",
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=400&fit=crop&fm=webp",
 ];
 
 export const CAROUSEL_IMAGES_ROW2 = [
-  "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=400&fit=crop",
+  "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=400&fit=crop&fm=webp",
 ];
 
 export const CAROUSEL_IMAGES_ROW3 = [
-  "https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1553484771-371a605b060b?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=400&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=400&fit=crop",
+  "https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1553484771-371a605b060b?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=400&h=400&fit=crop&fm=webp",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=400&fit=crop&fm=webp",
 ];
 
 export const HERO_IMAGES = [
   {
     brand: "Investors",
-    logo: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=200&h=200&fit=crop&fm=webp",
   },
   {
     brand: "Partners",
-    logo: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=200&h=200&fit=crop&fm=webp",
   },
   {
     brand: "Accelerators",
-    logo: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200&h=200&fit=crop&fm=webp",
   },
   {
     brand: "Angels",
-    logo: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=200&h=200&fit=crop",
+    logo: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=200&h=200&fit=crop&fm=webp",
   },
 ];
 
