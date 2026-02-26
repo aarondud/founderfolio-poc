@@ -1,0 +1,359 @@
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useImperativeHandle,
+  forwardRef,
+  useRef,
+} from "react";
+import {
+  X,
+  TrendingUp,
+  Flame,
+  Star,
+  Zap,
+  ArrowUpRight,
+  ShieldCheck,
+} from "lucide-react";
+import { MARKET_LOCATIONS } from "@/lib/constants";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+  Graticule,
+} from "react-simple-maps";
+import { geoEqualEarth } from "d3-geo";
+
+type Position = { mapX: number; mapY: number };
+
+interface WorldMapProps {
+  tooltipContent: React.ReactNode | null;
+  setTooltipContent: (content: React.ReactNode | null) => void;
+  tooltipPosition: Position | null;
+  setTooltipPosition: (position: Position | null) => void;
+  onMarkerInteraction?: (markerName: string) => void;
+  isMobile: boolean;
+  activeMarker: string | null;
+  setActiveMarker: (marker: string | null) => void;
+}
+
+const WorldMap = forwardRef<
+  { handleMarkerInteraction: (markerName: string) => void },
+  WorldMapProps
+>(function WorldMap(
+  {
+    tooltipContent,
+    setTooltipContent,
+    tooltipPosition,
+    setTooltipPosition,
+    onMarkerInteraction,
+    isMobile,
+    setActiveMarker,
+  }: WorldMapProps,
+  ref
+) {
+  // Add ref and state for map container
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const [mapDimensions, setMapDimensions] = useState({ width: 0, height: 0 });
+  const [isTooltipHovered, setIsTooltipHovered] = useState(false);
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Update dimensions on resize
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (mapContainerRef.current) {
+        setMapDimensions({
+          width: mapContainerRef.current.clientWidth,
+          height: mapContainerRef.current.clientHeight,
+        });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
+  // Generate country opacities once and store them
+  const countryOpacities = useMemo(() => {
+    const opacities: { [key: string]: number } = {};
+    return opacities;
+  }, []);
+
+  const handleMarkerInteraction = (markerName: string) => {
+    const marker = MARKET_LOCATIONS.find((m) => m.name === markerName);
+
+    if (!marker || !mapContainerRef.current) return;
+
+    // Clear any pending hide timeout and reset hover state
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+    }
+    setIsTooltipHovered(false);
+    setActiveMarker(markerName);
+    onMarkerInteraction?.(markerName);
+
+    // Set tooltip content
+    setTooltipContent(
+      <div className="w-64 space-y-4 p-3 bg-card rounded-lg shadow-md relative shadow-black/40">
+        <div className="flex items-center justify-between mb-2">
+          <div className="w-12 h-12 rounded-full overflow-hidden">
+            <img
+              src={marker.image}
+              alt={marker.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <h3 className="text-header font-semibold text-lg flex-grow text-center">
+            {marker.displayName || marker.name}
+          </h3>
+          {isMobile && (
+            <button
+              className="p-1 stroke-header text-header hover:text-primary transition-colors"
+              style={{ background: "none", border: "none" }}
+              onClick={() => {
+                setTooltipContent(null);
+                setTooltipPosition(null);
+                setActiveMarker(null);
+              }}
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+        <p className="text-[#333F3C] italic text-sm mb-2">{marker.quote}</p>
+        <div className="flex justify-between items-center">
+          <span className={`font-bold ${
+            marker.priority === "High Priority" ? "text-[#004838]" :
+            marker.priority === "Medium Priority" ? "text-[#D97706]" :
+            marker.priority === "Low Priority" ? "text-[#6B7280]" :
+            marker.priority === "Headquarters" ? "text-primary" :
+            "text-[#073127]"
+          }`}>{marker.priority}</span>
+          <div className="flex items-center gap-2">
+            {marker.sentiment === "Hot Market" && (
+              <Flame className="w-4 h-4 fill-[#FF6B35] text-[#FF6B35]" />
+            )}
+            {marker.sentiment === "Emerging" && (
+              <Zap className="w-4 h-4 fill-primary text-primary" />
+            )}
+            {marker.sentiment === "Growing" && (
+              <TrendingUp className="w-4 h-4 fill-[#10B981] text-[#10B981]" />
+            )}
+            {marker.sentiment === "Strong" && (
+              <Star className="w-4 h-4 fill-[#8B5CF6] text-[#8B5CF6]" />
+            )}
+            {marker.sentiment === "Headquarters" && (
+              <Star className="w-4 h-4 fill-primary text-primary" />
+            )}
+            {marker.sentiment === "Established" && (
+              <ShieldCheck className="w-4 h-4 text-[#0F766E]" />
+            )}
+            {marker.sentiment === "Expansion" && (
+              <ArrowUpRight className="w-4 h-4 fill-[#3B82F6] text-[#3B82F6]" />
+            )}
+            <span className={`font-bold text-sm ${
+              marker.sentiment === "Hot Market" ? "text-[#FF6B35]" :
+              marker.sentiment === "Emerging" ? "text-primary" :
+              marker.sentiment === "Growing" ? "text-[#10B981]" :
+              marker.sentiment === "Strong" ? "text-[#8B5CF6]" :
+              marker.sentiment === "Established" ? "text-[#0F766E]" :
+              marker.sentiment === "Headquarters" ? "text-primary" :
+              "text-[#3B82F6]"
+            }`}>
+              {marker.sentiment}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+
+    // Set tooltip position using new approach
+    if (isMobile) {
+      // Center in map for mobile
+      setTooltipPosition({
+        mapX: mapDimensions.width / 2,
+        mapY: mapDimensions.height / 2,
+      });
+    } else {
+      // Create a projection with the same configuration as the map
+      const projection = geoEqualEarth()
+        .scale(200)
+        .center([0, 0])
+        .translate([mapDimensions.width / 2, mapDimensions.height / 2]);
+
+      // Project the marker coordinates
+      const [x, y] = projection([
+        marker.markerPosition.x,
+        marker.markerPosition.y,
+      ]) || [0, 0];
+
+      // Apply the tooltip offset
+      const offsetX = marker.tooltipOffset?.x || 0;
+      const offsetY = marker.tooltipOffset?.y || 0;
+
+      // Calculate final position
+      const finalX = x + offsetX;
+      const finalY = y + offsetY;
+
+      // Ensure the tooltip stays within the map container bounds
+      const tooltipWidth = 256; // w-64 = 16rem = 256px
+      const tooltipHeight = 200; // Approximate height
+
+      const boundedX = Math.min(
+        Math.max(finalX, tooltipWidth / 2),
+        mapDimensions.width - tooltipWidth / 2
+      );
+      const boundedY = Math.min(
+        Math.max(finalY, tooltipHeight / 2),
+        mapDimensions.height - tooltipHeight / 2
+      );
+
+      setTooltipPosition({
+        mapX: boundedX,
+        mapY: boundedY,
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (isMobile) return;
+    
+    // Add small delay to allow tooltip's onMouseEnter to fire
+    hideTimeoutRef.current = setTimeout(() => {
+      if (!isTooltipHovered) {
+        setTooltipContent(null);
+        setTooltipPosition(null);
+        setActiveMarker(null);
+      }
+    }, 100);
+  };
+
+  useImperativeHandle(ref, () => ({
+    handleMarkerInteraction,
+  }));
+
+  return (
+    <div
+      ref={mapContainerRef}
+      className="w-full h-auto relative world-map-container"
+      style={{ aspectRatio: "16/9" }}
+    >
+      <ComposableMap
+        projection="geoEqualEarth"
+        projectionConfig={{
+          scale: 200,
+          center: [0, 0],
+        }}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <Graticule stroke="#EBEDE8" strokeWidth={0.5} opacity={1} />
+        <Geographies geography="/world-110m.json">
+          {({ geographies }) =>
+            geographies.map((geo) => {
+              if (!countryOpacities[geo.rsmKey]) {
+                countryOpacities[geo.rsmKey] = 0.1 + Math.random() * 0.7;
+              }
+              return (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  fill="#004838"
+                  stroke="card"
+                  strokeWidth={0.5}
+                  style={{
+                    default: {
+                      fill: "primary",
+                      stroke: "card",
+                      strokeWidth: 0.5,
+                      outline: "none",
+                      opacity: countryOpacities[geo.rsmKey],
+                    },
+                    hover: {
+                      fill: "primary",
+                      stroke: "card",
+                      strokeWidth: 0.5,
+                      outline: "none",
+                      opacity: 0.8,
+                    },
+                    pressed: {
+                      fill: "primary",
+                      stroke: "card",
+                      strokeWidth: 0.5,
+                      outline: "none",
+                      opacity: countryOpacities[geo.rsmKey],
+                    },
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              );
+            })
+          }
+        </Geographies>
+        {MARKET_LOCATIONS.map((marker) => (
+          <Marker
+            key={marker.name}
+            coordinates={[marker.markerPosition.x, marker.markerPosition.y]}
+            onMouseEnter={() => handleMarkerInteraction(marker.name)}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={() => handleMarkerInteraction(marker.name)}
+          >
+            <g transform="translate(-20, -20)" style={{ cursor: "pointer" }}>
+              <circle
+                cx="20"
+                cy="20"
+                r="20"
+                fill="white"
+                stroke="primary"
+                strokeWidth="2"
+              />
+              {"image" in marker && (
+                <image
+                  href={marker.image}
+                  x="0"
+                  y="0"
+                  width="40"
+                  height="40"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="circle(16px at 20px 20px)"
+                />
+              )}
+            </g>
+          </Marker>
+        ))}
+      </ComposableMap>
+
+      {/* Render tooltip directly in the map container */}
+      {tooltipContent && tooltipPosition && (
+        <div
+          onMouseEnter={() => {
+            if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+            setIsTooltipHovered(true);
+          }}
+          onMouseLeave={() => {
+            setIsTooltipHovered(false);
+            if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+            setTooltipContent(null);
+            setTooltipPosition(null);
+            setActiveMarker(null);
+          }}
+          className="absolute z-50"
+          style={{
+            left: `${tooltipPosition.mapX}px`,
+            top: `${tooltipPosition.mapY}px`,
+            transform: "translate(-50%, -50%)",
+            maxWidth: "min(280px, 90%)",
+          }}
+        >
+          {tooltipContent}
+        </div>
+      )}
+    </div>
+  );
+});
+
+export default WorldMap;

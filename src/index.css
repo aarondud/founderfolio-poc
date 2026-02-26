@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Aspekta";
+  src: url("/fonts/Aspekta-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aspekta";
+  src: url("/fonts/Aspekta-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aspekta";
+  src: url("/fonts/Aspekta-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aspekta";
+  src: url("/fonts/Aspekta-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@layer base {
+  :root {
+    --primary: 180 100% 14%;
+    --accent: 65 95% 70%;
+    --header: 168 27% 11%;
+    --body: 165 9% 23%;
+    --card: 90 8% 92%;
+    --background: 0 0% 100%;
+  }
+
+  * {
+    @apply border-[#EBEDE8];
+  }
+
+  body {
+    font-family: "Aspekta", sans-serif;
+    @apply bg-[#FFFFFF] text-[#333F3C];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-[#073127];
+  }
+
+  .slide-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700;
+  }
+
+  .slide-up.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .section-tag {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#004838] border border-[#EBEDE8] text-sm font-medium uppercase tracking-wider;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-semibold text-[#073127] mb-8;
+  }
+
+  .card {
+    @apply bg-[#EBEDE8] rounded-2xl p-6;
+  }
+
+  .container-section {
+    @apply max-w-7xl mx-auto py-8 md:py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  .grid-pattern-base {
+    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+  }
+
+  .grid-pattern {
+    @apply grid-pattern-base;
+    background-size: 40px 40px;
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 72, 56, 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(0, 72, 56, 0.1) 1px, transparent 1px);
+  }
+
+  .grid-pattern-large {
+    @apply grid-pattern-base;
+    background-size: 80px 80px;
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 72, 56, 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(0, 72, 56, 0.1) 1px, transparent 1px);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-50%));
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll var(--scroll-duration) linear infinite;
+    animation-direction: var(--scroll-direction, normal);
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-3d {
+    @apply relative overflow-hidden;
+  }
+
+  .carousel-3d-slide {
+    @apply absolute top-0 left-0 w-full h-full transition-all duration-500;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .carousel-3d-slide.active {
+    @apply opacity-100 scale-100;
+    transform: translateX(0) translateZ(0);
+  }
+
+  .carousel-3d-slide.prev {
+    @apply opacity-50 scale-95 blur-sm;
+    transform: translateX(-100%) translateZ(-100px);
+  }
+
+  .carousel-3d-slide.next {
+    @apply opacity-50 scale-95 blur-sm;
+    transform: translateX(100%) translateZ(-100px);
+  }
+
+  .carousel-dots {
+    @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 bg-[#004838] rounded-full px-3 py-1.5;
+  }
+
+  .carousel-dot {
+    @apply w-2 h-2 rounded-full bg-white/50 transition-colors;
+  }
+
+  .carousel-dot.active {
+    @apply bg-[#E2FB6C];
+  }
+
+  .snake-game-fullscreen {
+    @apply fixed inset-0 z-50 bg-[#004838];
+  }
+
+  .snake-game-grid {
+    background-size: 20px 20px;
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  }
+
+  .footer-link {
+    @apply text-white/80 hover:text-white transition-colors;
+  }
+
+  .footer-heading {
+    @apply text-white font-semibold mb-4;
+  }
+
+  .carousel-slide {
+    transition: all 0.5s ease-in-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .carousel-slide.active {
+    transform: scale(1) translateZ(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .carousel-slide.inactive {
+    transform: scale(0.9) translateZ(-100px);
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+
+  @media (max-width: 768px) {
+    .carousel-slide.inactive {
+      display: none;
+    }
+  }
+
+  /* Animation for fading in and sliding up */
+  @keyframes fadeSlideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translateY(-5px);
+      /* Bounce effect */
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animation for scaling in (pop effect) */
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Animation utility classes */
+  .animate-fadeSlideUp {
+    animation: fadeSlideUp 0.5s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  /* Delay utility classes for staggering */
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  .delay-700 {
+    animation-delay: 0.7s;
+  }
+
+  .delay-800 {
+    animation-delay: 0.8s;
+  }
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+      opacity: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .animate-accordion-down {
+    animation: accordion-down 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+    overflow: hidden;
+  }
+  .animate-accordion-up {
+    animation: accordion-up 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+    overflow: hidden;
+  }
+}

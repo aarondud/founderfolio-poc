@@ -1,0 +1,16 @@
+{
+  "name": "FounderFolio - Startup Investment Platform",
+  "short_name": "FounderFolio",
+  "description": "FounderFolio - Track startup investment opportunities. Real-time analytics, market insights, and comprehensive startup performance tracking.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a3d3d",
+  "theme_color": "#0a3d3d",
+  "icons": [
+    {
+      "src": "https://placehold.co/512x512/004838/E2FB6C?text=F",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
