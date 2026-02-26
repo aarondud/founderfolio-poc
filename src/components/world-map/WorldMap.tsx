@@ -140,27 +140,27 @@ const WorldMap = forwardRef<
           <span
             className={`font-bold ${
               marker.priority === "High Priority"
-                ? "text-[#004838]"
+                ? "text-primary"
                 : marker.priority === "Medium Priority"
-                  ? "text-[#D97706]"
+                  ? "text-priority-medium"
                   : marker.priority === "Low Priority"
-                    ? "text-[#6B7280]"
+                    ? "text-priority-low"
                     : marker.priority === "Headquarters"
                       ? "text-primary"
-                      : "text-[#073127]"
+                      : "text-header"
             }`}
           >
             {marker.priority}
           </span>
           <div className="flex items-center gap-2">
             {marker.sentiment === "Hot Market" && (
-              <Flame className="w-4 h-4 fill-[#FF6B35] text-[#FF6B35]" />
+              <Flame className="w-4 h-4 fill-market-hot text-market-hot" />
             )}
             {marker.sentiment === "Emerging" && (
               <Zap className="w-4 h-4 fill-primary text-primary" />
             )}
             {marker.sentiment === "Growing" && (
-              <TrendingUp className="w-4 h-4 fill-[#10B981] text-[#10B981]" />
+              <TrendingUp className="w-4 h-4 fill-market-growing text-market-growing" />
             )}
             {marker.sentiment === "Strong" && (
               <Star className="w-4 h-4 fill-[#8B5CF6] text-[#8B5CF6]" />
@@ -169,23 +169,23 @@ const WorldMap = forwardRef<
               <Star className="w-4 h-4 fill-primary text-primary" />
             )}
             {marker.sentiment === "Established" && (
-              <ShieldCheck className="w-4 h-4 text-[#0F766E]" />
+              <ShieldCheck className="w-4 h-4 text-teal-700" />
             )}
             {marker.sentiment === "Expansion" && (
-              <ArrowUpRight className="w-4 h-4 fill-[#3B82F6] text-[#3B82F6]" />
+              <ArrowUpRight className="w-4 h-4 fill-blue-500 text-blue-500" />
             )}
             <span
               className={`font-bold text-sm ${
                 marker.sentiment === "Hot Market"
-                  ? "text-[#FF6B35]"
+                  ? "text-market-hot"
                   : marker.sentiment === "Emerging"
                     ? "text-primary"
                     : marker.sentiment === "Growing"
-                      ? "text-[#10B981]"
+                      ? "text-market-growing"
                       : marker.sentiment === "Strong"
-                        ? "text-[#8B5CF6]"
+                        ? "text-violet-500"
                         : marker.sentiment === "Established"
-                          ? "text-[#0F766E]"
+                          ? "text-teal-700"
                           : marker.sentiment === "Headquarters"
                             ? "text-primary"
                             : "text-[#3B82F6]"

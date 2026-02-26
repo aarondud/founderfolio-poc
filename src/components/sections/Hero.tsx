@@ -56,7 +56,7 @@ const FloatingImageWithArrow: React.FC<FloatingImageWithArrowProps> = ({
           />
         </div>
         <ArrowUpRight
-          className={`absolute ${arrowPosition[verticalPos]} ${arrowPosition[horizontalPos]} h-12 w-12 text-[#073127] transform ${arrowRotation[arrowDirection]}`}
+          className={`absolute ${arrowPosition[verticalPos]} ${arrowPosition[horizontalPos]} h-12 w-12 text-header transform ${arrowRotation[arrowDirection]}`}
         />
       </div>
     </div>
@@ -138,14 +138,14 @@ export const Hero: React.FC = () => {
           {/* Main Text Content */}
           <div className="text-center max-w-4xl mx-auto relative z-20">
             <h1
-              className={`text-5xl md:text-7xl font-bold mb-6 text-[#073127] opacity-0 ${
+              className={`text-5xl md:text-7xl font-bold mb-6 text-header opacity-0 ${
                 isLoaded ? "animate-fadeSlideUp" : ""
               }`}
             >
               Monitor and invest in{" "}
               <span className="relative">
                 FounderFolio's
-                <span className="absolute bottom-0 left-0 w-full h-2 bg-[#E2FB6C] -z-10"></span>
+                <span className="absolute bottom-0 left-0 w-full h-2 bg-accent -z-10"></span>
               </span>{" "}
               growth potential.
             </h1>

@@ -13,12 +13,12 @@
   }
 
   * {
-    @apply border-[#EBEDE8];
+    @apply border-card;
   }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    @apply bg-[#FFFFFF] text-[#333F3C];
+    @apply bg-background text-body;
   }
 
   h1,
@@ -27,7 +27,7 @@
   h4,
   h5,
   h6 {
-    @apply font-semibold text-[#073127];
+    @apply font-semibold text-header;
   }
 
   .slide-up {
@@ -39,19 +39,25 @@
   }
 
   .section-tag {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#004838] border border-[#EBEDE8] text-sm font-medium uppercase tracking-wider;
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-primary border border-card text-sm font-medium uppercase tracking-wider;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-semibold text-[#073127] mb-8;
+    @apply text-3xl md:text-4xl font-semibold text-header mb-8;
   }
 
   .card {
-    @apply bg-[#EBEDE8] rounded-2xl p-6;
+    @apply bg-card rounded-2xl p-6;
   }
 
   .container-section {
     @apply max-w-7xl mx-auto py-8 md:py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  .bg-gamepad-pattern {
+    background-repeat: repeat;
+    background-size: 6vw 6vw;
+    background-position: center;
   }
 
   .grid-pattern-base {
@@ -130,7 +136,7 @@
   }
 
   .carousel-dots {
-    @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 bg-[#004838] rounded-full px-3 py-1.5;
+    @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 bg-primary rounded-full px-3 py-1.5;
   }
 
   .carousel-dot {
@@ -138,11 +144,11 @@
   }
 
   .carousel-dot.active {
-    @apply bg-[#E2FB6C];
+    @apply bg-accent;
   }
 
   .snake-game-fullscreen {
-    @apply fixed inset-0 z-50 bg-[#004838];
+    @apply fixed inset-0 z-50 bg-primary;
   }
 
   .snake-game-grid {

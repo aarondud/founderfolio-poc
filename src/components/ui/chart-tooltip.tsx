@@ -10,7 +10,7 @@ export const ChartTooltip: React.FC<ChartTooltipProps> = ({
   className = "" 
 }) => {
   return (
-    <div className={`bg-[#073127] p-4 rounded-lg shadow-lg border ${className}`}>
+    <div className={`bg-header p-4 rounded-lg shadow-lg border ${className}`}>
       {children}
     </div>
   );

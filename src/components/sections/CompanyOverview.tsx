@@ -25,7 +25,7 @@ export const CompanyOverview: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-header">
         <Tag icon={BriefcaseBusiness} text={CONTENT.overview.tag} />
         <div className="text-center mb-12 ">
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#073127] mb-6">
+          <h2 className="text-3xl md:text-4xl font-semibold text-header mb-6">
             {CONTENT.overview.header}
           </h2>
           <p className="text-xl max-w-5xl mx-auto">{CONTENT.overview.sub}</p>

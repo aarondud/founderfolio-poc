@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#073127] text-white py-16">
+    <footer className="bg-header text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}

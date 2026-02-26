@@ -20,6 +20,14 @@ export default {
           gain: "#004838",
           stable: "#333F3C",
         },
+        priority: {
+          medium: "#D97706",
+          low: "#6B7280",
+        },
+        market: {
+          hot: "#FF6B35",
+          growing: "#10B981",
+        },
       },
       borderRadius: {
         lg: "0.75rem",

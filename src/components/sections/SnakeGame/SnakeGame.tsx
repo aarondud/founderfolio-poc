@@ -363,12 +363,9 @@ export const SnakeGame: React.FC = () => {
       className="container-section slide-up bg-muted/30"
     >
       <Card
-        className="bg-transparent border-primary/10 pt-12 pb-12 rounded-xl w-full"
+        className="bg-transparent border-primary/10 pt-12 pb-12 rounded-xl w-full bg-gamepad-pattern"
         style={{
           backgroundImage: `url(${gamepadBase64})`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "6vw 6vw",
-          backgroundPosition: "center",
         }}
       >
         <div className="flex justify-center mb-8">
