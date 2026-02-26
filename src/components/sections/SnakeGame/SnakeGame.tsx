@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useMemo } from "react";
+import React, { useRef, useState, useEffect, useMemo, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Gamepad2 } from "lucide-react";
@@ -139,7 +139,7 @@ export const SnakeGame: React.FC = () => {
     return newFruitPos;
   };
 
-  const moveSnake = () => {
+  const moveSnake = useCallback(() => {
     setGameState((prev) => {
       const {
         snake,
@@ -188,7 +188,7 @@ export const SnakeGame: React.FC = () => {
       const newScoreCount = { ...scoreCount };
 
       if (head.x === fruit.x && head.y === fruit.y) {
-        const { position, type, image } = generateFruit(newSnake); // Use newSnake
+        const { position, type, image } = generateFruit(newSnake);
         newFruit = position;
         newFruitType = type;
         newFruitImage = image;
@@ -210,7 +210,7 @@ export const SnakeGame: React.FC = () => {
         scoreCount: newScoreCount,
       };
     });
-  };
+  }, [gridWidth, gridHeight, isMuted]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -263,6 +263,8 @@ export const SnakeGame: React.FC = () => {
     gameState.isPaused,
     gridWidth,
     gridHeight,
+    moveSnake,
+    isMuted,
   ]);
 
   const startGame = () => {
