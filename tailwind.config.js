@@ -21,9 +21,6 @@ export default {
           stable: "#333F3C",
         },
       },
-      fontFamily: {
-        aspekta: ["Aspekta", "sans-serif"],
-      },
       borderRadius: {
         lg: "0.75rem",
         md: "0.5rem",
