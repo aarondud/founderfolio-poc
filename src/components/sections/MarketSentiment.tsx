@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MessageSquareQuote } from "lucide-react";
+import { MessageSquareQuote, ChevronLeft, ChevronRight } from "lucide-react";
 import { MARKET_ANALYSIS, KEYNOTE_ANALYSIS, CONTENT } from "@/lib/constants";
 import { SECTION_IDS } from "@/lib/sections";
 import { Tag } from "@/components/ui/tag";
@@ -7,10 +7,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
 
@@ -73,48 +72,62 @@ export const MarketSentiment: React.FC = () => {
         </div>
       </div>
 
-      <div>
-        <div className="py-16">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            setApi={setApi}
-            className="w-full max-w-7xl mx-auto px-4 md:px-0"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {MARKET_ANALYSIS.map((analysis, index) => (
-                <CarouselItem
-                  key={index}
-                  className="pl-2 md:pl-4 basis-full md:basis-1/2 pt-16 md:pt-20"
-                >
-                  <TestimonialCard
-                    name={analysis.name}
-                    title={analysis.title}
-                    quote={analysis.quote}
-                    useIcon={true}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-16 h-12 w-12 bg-header hover:bg-header/90 border-header text-white hover:text-white" />
-            <CarouselNext className="hidden md:flex -right-16 h-12 w-12 bg-header hover:bg-header/90 border-header text-white hover:text-white" />
-
-            {/* Mobile navigation dots */}
-            <div className="flex justify-center space-x-2 mt-8 md:hidden">
-              {MARKET_ANALYSIS.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    index === current ? "bg-primary" : "bg-primary/30"
-                  }`}
-                />
-              ))}
-            </div>
-          </Carousel>
+      <div className="flex items-center gap-4 xl:gap-6 overflow-visible">
+            <Button
+              variant="outline"
+              size="icon"
+              className="hidden xl:flex h-12 w-12 bg-header hover:bg-header/90 border-header text-white hover:text-white shrink-0"
+              onClick={() => api?.scrollPrev()}
+              disabled={!api?.canScrollPrev()}
+            >
+              <ChevronLeft className="h-6 w-6 text-accent" />
+            </Button>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              setApi={setApi}
+              className="flex-1 min-w-0"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {MARKET_ANALYSIS.map((analysis, index) => (
+                  <CarouselItem
+                    key={index}
+                    className="pl-2 md:pl-4 basis-full md:basis-1/2 pt-16 md:pt-20"
+                  >
+                    <TestimonialCard
+                      name={analysis.name}
+                      title={analysis.title}
+                      quote={analysis.quote}
+                      useIcon={true}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            <Button
+              variant="outline"
+              size="icon"
+              className="hidden xl:flex h-12 w-12 bg-header hover:bg-header/90 border-header text-white hover:text-white shrink-0"
+              onClick={() => api?.scrollNext()}
+              disabled={!api?.canScrollNext()}
+            >
+              <ChevronRight className="h-6 w-6 text-accent" />
+            </Button>
         </div>
-      </div>
+
+        {/* Mobile navigation dots */}
+        <div className="flex justify-center space-x-2 mt-8 xl:hidden">
+          {MARKET_ANALYSIS.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === current ? "bg-primary" : "bg-primary/30"
+              }`}
+            />
+          ))}
+        </div>
     </section>
   );
 };
