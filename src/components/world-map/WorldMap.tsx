@@ -53,7 +53,7 @@ const WorldMap = forwardRef<
     isInView,
     setActiveMarker,
   }: WorldMapProps,
-  ref
+  ref,
 ) {
   // Add ref and state for map container
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -137,13 +137,21 @@ const WorldMap = forwardRef<
         </div>
         <p className="text-[#333F3C] italic text-sm mb-2">{marker.quote}</p>
         <div className="flex justify-between items-center">
-          <span className={`font-bold ${
-            marker.priority === "High Priority" ? "text-[#004838]" :
-            marker.priority === "Medium Priority" ? "text-[#D97706]" :
-            marker.priority === "Low Priority" ? "text-[#6B7280]" :
-            marker.priority === "Headquarters" ? "text-primary" :
-            "text-[#073127]"
-          }`}>{marker.priority}</span>
+          <span
+            className={`font-bold ${
+              marker.priority === "High Priority"
+                ? "text-[#004838]"
+                : marker.priority === "Medium Priority"
+                  ? "text-[#D97706]"
+                  : marker.priority === "Low Priority"
+                    ? "text-[#6B7280]"
+                    : marker.priority === "Headquarters"
+                      ? "text-primary"
+                      : "text-[#073127]"
+            }`}
+          >
+            {marker.priority}
+          </span>
           <div className="flex items-center gap-2">
             {marker.sentiment === "Hot Market" && (
               <Flame className="w-4 h-4 fill-[#FF6B35] text-[#FF6B35]" />
@@ -166,20 +174,28 @@ const WorldMap = forwardRef<
             {marker.sentiment === "Expansion" && (
               <ArrowUpRight className="w-4 h-4 fill-[#3B82F6] text-[#3B82F6]" />
             )}
-            <span className={`font-bold text-sm ${
-              marker.sentiment === "Hot Market" ? "text-[#FF6B35]" :
-              marker.sentiment === "Emerging" ? "text-primary" :
-              marker.sentiment === "Growing" ? "text-[#10B981]" :
-              marker.sentiment === "Strong" ? "text-[#8B5CF6]" :
-              marker.sentiment === "Established" ? "text-[#0F766E]" :
-              marker.sentiment === "Headquarters" ? "text-primary" :
-              "text-[#3B82F6]"
-            }`}>
+            <span
+              className={`font-bold text-sm ${
+                marker.sentiment === "Hot Market"
+                  ? "text-[#FF6B35]"
+                  : marker.sentiment === "Emerging"
+                    ? "text-primary"
+                    : marker.sentiment === "Growing"
+                      ? "text-[#10B981]"
+                      : marker.sentiment === "Strong"
+                        ? "text-[#8B5CF6]"
+                        : marker.sentiment === "Established"
+                          ? "text-[#0F766E]"
+                          : marker.sentiment === "Headquarters"
+                            ? "text-primary"
+                            : "text-[#3B82F6]"
+              }`}
+            >
               {marker.sentiment}
             </span>
           </div>
         </div>
-      </div>
+      </div>,
     );
 
     // Set tooltip position using new approach
@@ -216,11 +232,11 @@ const WorldMap = forwardRef<
 
       const boundedX = Math.min(
         Math.max(finalX, tooltipWidth / 2),
-        mapDimensions.width - tooltipWidth / 2
+        mapDimensions.width - tooltipWidth / 2,
       );
       const boundedY = Math.min(
         Math.max(finalY, tooltipHeight / 2),
-        mapDimensions.height - tooltipHeight / 2
+        mapDimensions.height - tooltipHeight / 2,
       );
 
       setTooltipPosition({
@@ -232,7 +248,7 @@ const WorldMap = forwardRef<
 
   const handleMouseLeave = () => {
     if (isMobile) return;
-    
+
     // Add small delay to allow tooltip's onMouseEnter to fire
     hideTimeoutRef.current = setTimeout(() => {
       if (!isTooltipHovered) {
@@ -308,51 +324,51 @@ const WorldMap = forwardRef<
           }
         </Geographies>
         {MARKET_LOCATIONS.map((marker, index) => {
-            const pinSize = isMobile ? 40 : 20;
-            const pinDimension = pinSize * 2;
-            const clipRadius = pinSize - 4;
-            const delay = pinsAnimated ? index * 100 : 0;
-            return (
-              <Marker
-                key={marker.name}
-                coordinates={[marker.markerPosition.x, marker.markerPosition.y]}
-                onMouseEnter={() => handleMarkerInteraction(marker.name)}
-                onMouseLeave={handleMouseLeave}
-                onTouchStart={() => handleMarkerInteraction(marker.name)}
+          const pinSize = isMobile ? 40 : 30;
+          const pinDimension = pinSize * 2;
+          const clipRadius = pinSize - 4;
+          const delay = pinsAnimated ? index * 100 : 0;
+          return (
+            <Marker
+              key={marker.name}
+              coordinates={[marker.markerPosition.x, marker.markerPosition.y]}
+              onMouseEnter={() => handleMarkerInteraction(marker.name)}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={() => handleMarkerInteraction(marker.name)}
+            >
+              <g
+                transform={`translate(-${pinSize}, -${pinSize})`}
+                style={{
+                  cursor: "pointer",
+                  opacity: pinsAnimated ? 1 : 0,
+                  transform: `translate(-${pinSize}px, -${pinSize}px) scale(${pinsAnimated ? 1 : 0})`,
+                  transformOrigin: `${pinSize}px ${pinSize}px`,
+                  transition: `opacity 0.3s ease-out ${delay}ms, transform 0.3s ease-out ${delay}ms`,
+                }}
               >
-                <g
-                  transform={`translate(-${pinSize}, -${pinSize})`}
-                  style={{
-                    cursor: "pointer",
-                    opacity: pinsAnimated ? 1 : 0,
-                    transform: `translate(-${pinSize}px, -${pinSize}px) scale(${pinsAnimated ? 1 : 0})`,
-                    transformOrigin: `${pinSize}px ${pinSize}px`,
-                    transition: `opacity 0.3s ease-out ${delay}ms, transform 0.3s ease-out ${delay}ms`,
-                  }}
-                >
-                  <circle
-                    cx={String(pinSize)}
-                    cy={String(pinSize)}
-                    r={String(pinSize)}
-                    fill="white"
-                    stroke="primary"
-                    strokeWidth="2"
+                <circle
+                  cx={String(pinSize)}
+                  cy={String(pinSize)}
+                  r={String(pinSize)}
+                  fill="white"
+                  stroke="primary"
+                  strokeWidth="2"
+                />
+                {"image" in marker && (
+                  <image
+                    href={marker.image}
+                    x="0"
+                    y="0"
+                    width={String(pinDimension)}
+                    height={String(pinDimension)}
+                    preserveAspectRatio="xMidYMid slice"
+                    clipPath={`circle(${clipRadius}px at ${pinSize}px ${pinSize}px)`}
                   />
-                  {"image" in marker && (
-                    <image
-                      href={marker.image}
-                      x="0"
-                      y="0"
-                      width={String(pinDimension)}
-                      height={String(pinDimension)}
-                      preserveAspectRatio="xMidYMid slice"
-                      clipPath={`circle(${clipRadius}px at ${pinSize}px ${pinSize}px)`}
-                    />
-                  )}
-                </g>
-              </Marker>
-            );
-          })}
+                )}
+              </g>
+            </Marker>
+          );
+        })}
       </ComposableMap>
 
       {/* Render tooltip directly in the map container */}
