@@ -173,7 +173,7 @@ export const Hero: React.FC = () => {
                   });
                 }}
               >
-                Meet the Team
+                Get Started
               </Button>
               <Button
                 size="lg"
