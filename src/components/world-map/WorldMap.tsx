@@ -294,37 +294,45 @@ const WorldMap = forwardRef<
             })
           }
         </Geographies>
-        {MARKET_LOCATIONS.map((marker) => (
-          <Marker
-            key={marker.name}
-            coordinates={[marker.markerPosition.x, marker.markerPosition.y]}
-            onMouseEnter={() => handleMarkerInteraction(marker.name)}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={() => handleMarkerInteraction(marker.name)}
-          >
-            <g transform="translate(-20, -20)" style={{ cursor: "pointer" }}>
-              <circle
-                cx="20"
-                cy="20"
-                r="20"
-                fill="white"
-                stroke="primary"
-                strokeWidth="2"
-              />
-              {"image" in marker && (
-                <image
-                  href={marker.image}
-                  x="0"
-                  y="0"
-                  width="40"
-                  height="40"
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath="circle(16px at 20px 20px)"
-                />
-              )}
-            </g>
-          </Marker>
-        ))}
+        {MARKET_LOCATIONS.map((marker) => {
+            const pinSize = isMobile ? 40 : 20;
+            const pinDimension = pinSize * 2;
+            const clipRadius = pinSize - 4;
+            return (
+              <Marker
+                key={marker.name}
+                coordinates={[marker.markerPosition.x, marker.markerPosition.y]}
+                onMouseEnter={() => handleMarkerInteraction(marker.name)}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={() => handleMarkerInteraction(marker.name)}
+              >
+                <g
+                  transform={`translate(-${pinSize}, -${pinSize})`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <circle
+                    cx={String(pinSize)}
+                    cy={String(pinSize)}
+                    r={String(pinSize)}
+                    fill="white"
+                    stroke="primary"
+                    strokeWidth="2"
+                  />
+                  {"image" in marker && (
+                    <image
+                      href={marker.image}
+                      x="0"
+                      y="0"
+                      width={String(pinDimension)}
+                      height={String(pinDimension)}
+                      preserveAspectRatio="xMidYMid slice"
+                      clipPath={`circle(${clipRadius}px at ${pinSize}px ${pinSize}px)`}
+                    />
+                  )}
+                </g>
+              </Marker>
+            );
+          })}
       </ComposableMap>
 
       {/* Render tooltip directly in the map container */}
