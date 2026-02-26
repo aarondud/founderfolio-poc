@@ -1,7 +1,6 @@
 import React, {
   useState,
   useEffect,
-  useMemo,
   useImperativeHandle,
   forwardRef,
   useRef,
@@ -88,11 +87,14 @@ const WorldMap = forwardRef<
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
-  // Generate country opacities once and store them
-  const countryOpacities = useMemo(() => {
-    const opacities: { [key: string]: number } = {};
-    return opacities;
-  }, []);
+  // Store country opacities in ref (mutable, but persists across renders)
+  const countryOpacitiesRef = useRef<{ [key: string]: number }>({});
+  const getOpacity = (rsmKey: string) => {
+    if (!countryOpacitiesRef.current[rsmKey]) {
+      countryOpacitiesRef.current[rsmKey] = 0.1 + Math.random() * 0.7;
+    }
+    return countryOpacitiesRef.current[rsmKey];
+  };
 
   const handleMarkerInteraction = (markerName: string) => {
     const marker = MARKET_LOCATIONS.find((m) => m.name === markerName);
@@ -284,8 +286,8 @@ const WorldMap = forwardRef<
         <Geographies geography="/world-110m.json">
           {({ geographies }) =>
             geographies.map((geo) => {
-              if (!countryOpacities[geo.rsmKey]) {
-                countryOpacities[geo.rsmKey] = 0.1 + Math.random() * 0.7;
+              if (!getOpacity(geo.rsmKey)) {
+                getOpacity(geo.rsmKey);
               }
               return (
                 <Geography
@@ -300,7 +302,7 @@ const WorldMap = forwardRef<
                       stroke: "card",
                       strokeWidth: 0.5,
                       outline: "none",
-                      opacity: countryOpacities[geo.rsmKey],
+                      opacity: getOpacity(geo.rsmKey),
                     },
                     hover: {
                       fill: "primary",
@@ -314,7 +316,7 @@ const WorldMap = forwardRef<
                       stroke: "card",
                       strokeWidth: 0.5,
                       outline: "none",
-                      opacity: countryOpacities[geo.rsmKey],
+                      opacity: getOpacity(geo.rsmKey),
                     },
                   }}
                   onClick={(e) => e.stopPropagation()}
