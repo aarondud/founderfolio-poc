@@ -47,6 +47,8 @@ Thumbs.db
 
 # Cache
 .cache/
+.eslintcache
+coverage/
 
 # Blog drafts
 blog-draft.md
