@@ -4,7 +4,7 @@ import { ArrowLeft, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tag } from "@/components/ui/tag";
 
-export const DemoPage: React.FC = () => {
+export const Demo: React.FC = () => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -57,4 +57,4 @@ export const DemoPage: React.FC = () => {
   );
 };
 
-export default DemoPage;
+export default Demo;

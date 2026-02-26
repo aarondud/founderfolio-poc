@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { useEffect } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -13,7 +18,7 @@ import { MarketSentiment } from "@/components/sections/MarketSentiment";
 import { SnakeGame } from "@/components/sections/SnakeGame/SnakeGame";
 import { Reports } from "@/components/sections/Reports";
 import FAQ from "@/components/sections/FAQ";
-import DemoPage from "@/components/sections/DemoPage";
+import Demo from "@/components/sections/Demo";
 
 import "./App.css";
 
@@ -62,7 +67,7 @@ function App() {
               <div className="min-h-screen flex flex-col">
                 <Header demoPage />
                 <main className="flex-1 pt-16">
-                  <DemoPage />
+                  <Demo />
                 </main>
                 <Footer />
               </div>
