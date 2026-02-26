@@ -58,7 +58,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
 };
 
 export const Analysis: React.FC = () => {
-  const { sectionRef } = useSectionAnimation();
+  const { sectionRef, isInView } = useSectionAnimation();
 
   return (
     <section
@@ -125,6 +125,7 @@ export const Analysis: React.FC = () => {
                       strokeWidth: 2,
                     }}
                     animationDuration={2000}
+                    isAnimationActive={isInView}
                   />
                   {CHART_DATA.filter(
                     (data) => data.highlight && data.highlight.length > 0,

@@ -114,7 +114,7 @@ const CustomizedContent = (props: CustomizedContentProps) => {
   );
 };
 
-const TreemapAndText: React.FC = () => (
+const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => (
   <div className="flex flex-col md:flex-row gap-0 md:gap-12 items-center md:items-stretch">
     {/* Treemap Column */}
     <div className="w-full md:flex-1 flex flex-col justify-center items-center">
@@ -127,6 +127,7 @@ const TreemapAndText: React.FC = () => (
             stroke="#EBEDE8"
             fill="#004838"
             content={<CustomizedContent />}
+            isAnimationActive={isInView}
           >
             <Tooltip content={<CustomTooltip />} />
           </Treemap>
@@ -175,7 +176,7 @@ const TreemapAndText: React.FC = () => (
 );
 
 export const Results: React.FC = () => {
-  const { sectionRef } = useSectionAnimation();
+  const { sectionRef, isInView } = useSectionAnimation();
 
   return (
     <section
@@ -190,7 +191,7 @@ export const Results: React.FC = () => {
         {CONTENT.results.sub}
       </p>
       <Card className="bg-card p-4 md:p-8 max-w-6xl mx-auto my-8">
-        <TreemapAndText />
+        <TreemapAndText isInView={isInView} />
       </Card>
     </section>
   );
