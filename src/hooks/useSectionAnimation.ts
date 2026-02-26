@@ -1,27 +1,27 @@
 import { useRef, useEffect, useState } from 'react';
-import useScrollAnimation from './useScrollAnimation';
 
 export const useSectionAnimation = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const { registerElement } = useScrollAnimation();
 
   useEffect(() => {
     const element = sectionRef.current;
     if (!element) return;
 
-    registerElement(element);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          element.classList.add('in-view');
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-    const handleScroll = () => {
-      const rect = element.getBoundingClientRect();
-      const inView = rect.top <= window.innerHeight - 150 && rect.bottom >= 0;
-      setIsInView(inView);
-    };
+    observer.observe(element);
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [registerElement]);
+    return () => observer.disconnect();
+  }, []);
 
   return { sectionRef, isInView };
 };
