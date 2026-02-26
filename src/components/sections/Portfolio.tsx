@@ -9,7 +9,7 @@ import { CircleDollarSign } from "lucide-react";
 type Position = { mapX: number; mapY: number };
 
 export const Portfolio: React.FC = () => {
-  const { sectionRef } = useSectionAnimation();
+  const { sectionRef, isInView } = useSectionAnimation();
 
   const [tooltipContent, setTooltipContent] = useState<React.ReactNode | null>(
     null,
@@ -49,6 +49,7 @@ export const Portfolio: React.FC = () => {
             setTooltipContent={setTooltipContent}
             setTooltipPosition={setTooltipPosition}
             isMobile={isMobile}
+            isInView={isInView}
             activeMarker={activeMarker}
             setActiveMarker={setActiveMarker}
           />

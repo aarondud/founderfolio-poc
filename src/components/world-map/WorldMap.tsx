@@ -34,6 +34,7 @@ interface WorldMapProps {
   setTooltipPosition: (position: Position | null) => void;
   onMarkerInteraction?: (markerName: string) => void;
   isMobile: boolean;
+  isInView: boolean;
   activeMarker: string | null;
   setActiveMarker: (marker: string | null) => void;
 }
@@ -49,6 +50,7 @@ const WorldMap = forwardRef<
     setTooltipPosition,
     onMarkerInteraction,
     isMobile,
+    isInView,
     setActiveMarker,
   }: WorldMapProps,
   ref
@@ -58,6 +60,17 @@ const WorldMap = forwardRef<
   const [mapDimensions, setMapDimensions] = useState({ width: 0, height: 0 });
   const [isTooltipHovered, setIsTooltipHovered] = useState(false);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [pinsAnimated, setPinsAnimated] = useState(false);
+
+  // Trigger pin animations when section comes into view
+  useEffect(() => {
+    if (isInView && !pinsAnimated) {
+      const timer = setTimeout(() => {
+        setPinsAnimated(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, pinsAnimated]);
 
   // Update dimensions on resize
   useEffect(() => {
@@ -294,10 +307,11 @@ const WorldMap = forwardRef<
             })
           }
         </Geographies>
-        {MARKET_LOCATIONS.map((marker) => {
+        {MARKET_LOCATIONS.map((marker, index) => {
             const pinSize = isMobile ? 40 : 20;
             const pinDimension = pinSize * 2;
             const clipRadius = pinSize - 4;
+            const delay = pinsAnimated ? index * 100 : 0;
             return (
               <Marker
                 key={marker.name}
@@ -308,7 +322,13 @@ const WorldMap = forwardRef<
               >
                 <g
                   transform={`translate(-${pinSize}, -${pinSize})`}
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    cursor: "pointer",
+                    opacity: pinsAnimated ? 1 : 0,
+                    transform: `translate(-${pinSize}px, -${pinSize}px) scale(${pinsAnimated ? 1 : 0})`,
+                    transformOrigin: `${pinSize}px ${pinSize}px`,
+                    transition: `opacity 0.3s ease-out ${delay}ms, transform 0.3s ease-out ${delay}ms`,
+                  }}
                 >
                   <circle
                     cx={String(pinSize)}
