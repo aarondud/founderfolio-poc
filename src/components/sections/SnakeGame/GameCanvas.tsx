@@ -36,9 +36,6 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
   const [snakeHeadImage, setSnakeHeadImage] = useState<HTMLImageElement | null>(
     null
   );
-  const [currentFruitImage, setCurrentFruitImage] =
-    useState<HTMLImageElement | null>(null);
-  const [fruitScale, setFruitScale] = useState(1); // For fruit spawn animation
 
   // Load snake head image
   useEffect(() => {
@@ -51,53 +48,6 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
         INVERTED_FOUNDER_FOLIO_LOGO,
       );
   }, []);
-
-  // Load fruit image whenever fruitImage changes
-  useEffect(() => {
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = fruitImage;
-    console.log(`Loading new fruit image: ${fruitImage}`); // Debug image load start
-    img.onload = () => {
-      console.log(`Fruit image loaded: ${fruitImage}`);
-      setCurrentFruitImage(img);
-    };
-    img.onerror = (e) => {
-      console.error(`Failed to load fruit image: ${fruitImage}`, e);
-      setCurrentFruitImage(null);
-    };
-    // Cleanup previous image load if it hasn't completed
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [fruitImage]);
-
-  // Fruit spawn animation (run once on fruitImage change)
-  useEffect(() => {
-    setFruitScale(1); // Reset scale
-    let growing = true;
-    const interval = setInterval(() => {
-      setFruitScale((prev) => {
-        if (growing) {
-          const newScale = prev + 0.05;
-          if (newScale >= 1.2) {
-            growing = false;
-            return 1.2;
-          }
-          return newScale;
-        } else {
-          const newScale = prev - 0.05;
-          if (newScale <= 1) {
-            clearInterval(interval); // Stop the animation
-            return 1;
-          }
-          return newScale;
-        }
-      });
-    }, 50);
-    return () => clearInterval(interval);
-  }, [fruitImage]); // Trigger on fruitImage change instead of fruit
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -195,63 +145,26 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
       }
     });
 
+    // Reset canvas state before drawing fruit
+    ctx.globalAlpha = 1;
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
     // Draw fruit
     const fruitX = fruit.x * cellSize;
     const fruitY = fruit.y * cellSize;
     const centerX = fruitX + cellSize / 2;
     const centerY = fruitY + cellSize / 2;
 
-    // Check if fruitImage is an emoji (single character or emoji string)
-    const isEmoji = fruitImage && (
-      /\p{Emoji}/u.test(fruitImage) || 
-      fruitImage.length <= 4
-    );
-
-    if (isEmoji) {
-      // Render emoji
+    if (fruitImage) {
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = "#FFFFFF";
       ctx.font = `${Math.floor(cellSize * 0.7)}px sans-serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(fruitImage, centerX, centerY);
-    } else if (currentFruitImage) {
-      const aspectRatio = currentFruitImage.width / currentFruitImage.height;
-      const drawWidth = cellSize * 0.8 * (aspectRatio > 1 ? 1 : aspectRatio);
-      const drawHeight =
-        cellSize * 0.8 * (aspectRatio > 1 ? 1 / aspectRatio : 1);
-      const xOffset = (cellSize - drawWidth * fruitScale) / 2;
-      const yOffset = (cellSize - drawHeight * fruitScale) / 2;
-
-      // Add shadow for fruit
-      ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
-      ctx.shadowBlur = 5;
-      ctx.shadowOffsetX = 2;
-      ctx.shadowOffsetY = 2;
-
-      ctx.save();
-      ctx.beginPath();
-      // Circular clip path for fruit
-      ctx.arc(
-        fruitX + cellSize / 2,
-        fruitY + cellSize / 2,
-        cellSize * 0.4 * fruitScale,
-        0,
-        Math.PI * 2
-      );
-      ctx.clip();
-      ctx.drawImage(
-        currentFruitImage,
-        fruitX + xOffset,
-        fruitY + yOffset,
-        drawWidth * fruitScale,
-        drawHeight * fruitScale
-      );
-      ctx.restore();
-
-      // Reset shadow
-      ctx.shadowColor = "transparent";
-      ctx.shadowBlur = 0;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 0;
     }
   }, [
     snake,
@@ -264,8 +177,6 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
     canvasWidth,
     canvasHeight,
     snakeHeadImage,
-    currentFruitImage,
-    fruitScale,
   ]);
 
   return (

@@ -119,7 +119,7 @@ export const SnakeGame: React.FC = () => {
       newFruitPos = {
         position: {
           x: Math.floor(Math.random() * gridWidth),
-          y: Math.floor(Math.random() * gridHeight),
+          y: Math.floor(Math.random() * (gridHeight - 1)) + 1,
         },
         type: fruitData.name,
         image: fruitData.image,
@@ -131,7 +131,6 @@ export const SnakeGame: React.FC = () => {
         );
         break;
       }
-      console.log(`Checking snake positions:`, snake); // Debug with passed snake
     } while (
       snake.some(
         (segment) =>
@@ -140,9 +139,6 @@ export const SnakeGame: React.FC = () => {
       )
     );
 
-    console.log(
-      `Fruit spawned at: (${newFruitPos.position.x}, ${newFruitPos.position.y})`
-    );
     return newFruitPos;
   };
 
