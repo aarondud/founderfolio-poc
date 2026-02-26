@@ -21,23 +21,7 @@ const CARD_HEIGHT_MOBILE = 700; // Taller for mobile
 const CARD_PADDING = 24 * 2; // p-6 = 24px on each side
 
 // Minimum cell size to ensure visibility
-const MIN_CELL_SIZE = 40; // Updated to 40 as preferred
-
-// SVG for the Gamepad2 icon with spacing
-const gamepadSvg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <g transform="translate(16, 16)">
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#004838" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.1">
-      <path d="M6 12H12M9 9V15"/>
-      <path d="M15 12H15.01M18 12H18.01M15 9H15.01M15 15H15.01"/>
-      <path d="M2 6H22V18H2Z"/>
-    </svg>
-  </g>
-</svg>
-`;
-
-// Convert SVG to base64 for background-image
-const gamepadBase64 = `data:image/svg+xml;base64,${btoa(gamepadSvg)}`;
+const MIN_CELL_SIZE = 40;
 
 export const SnakeGame: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>({
@@ -358,9 +342,6 @@ export const SnakeGame: React.FC = () => {
     >
       <Card
         className="bg-transparent border-primary/10 pt-12 pb-12 rounded-xl w-full bg-gamepad-pattern"
-        style={{
-          backgroundImage: `url(${gamepadBase64})`,
-        }}
       >
         <div className="flex justify-center mb-8">
           <Tag icon={Gamepad2} text="Market Simulator" />

@@ -55,6 +55,7 @@
   }
 
   .bg-gamepad-pattern {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlldz0iNjQgNjQiPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LCAxNikiPgogICAgPHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwNDgzOCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIG9wYWNpdHk9IjAuMSI+CiAgICAgIDxwYXRoIGQ9Ik02IDEySDEyTTkgOVYxNSIvPgogICAgICA8cGF0aCBkPSJNMTUgMTJIMTUuMDFNMTggMTJIMTguMDFNMTUgOUgxNS4wM00xNSAxNUgxNS4wMSIvPgogICAgICA8cGF0aCBkPSJNMiA2SDIyVjE4SDJaIi8+CiAgICA8L3N2Zz4KICA8L2c+Cjwvc3ZnPg==");
     background-repeat: repeat;
     background-size: 6vw 6vw;
     background-position: center;
