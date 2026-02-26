@@ -55,7 +55,6 @@ export const SnakeGame: React.FC = () => {
   });
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const speedRef = useRef<number>(INITIAL_SPEED);
   const { sectionRef } = useSectionAnimation();
   const gameCardRef = useRef<HTMLDivElement>(null);
@@ -174,7 +173,7 @@ export const SnakeGame: React.FC = () => {
         head.y >= gridHeight ||
         snake.some((seg, i) => i > 0 && seg.x === head.x && seg.y === head.y)
       ) {
-        if (!isMuted && gameOverAudioRef.current) {
+        if (!prev.isMuted && gameOverAudioRef.current) {
           gameOverAudioRef.current.play();
         }
         return { ...prev, gameOver: true };
@@ -210,19 +209,19 @@ export const SnakeGame: React.FC = () => {
         scoreCount: newScoreCount,
       };
     });
-  }, [gridWidth, gridHeight, isMuted]);
+  }, [gridWidth, gridHeight]);
 
   useEffect(() => {
     if (!audioRef.current) return;
     if (!isPlaying || gameState.gameOver) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
-    } else if (!isMuted && !gameState.isPaused) {
+    } else if (!gameState.isMuted && !gameState.isPaused) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying, gameState.gameOver, isMuted, gameState.isPaused]);
+  }, [isPlaying, gameState.gameOver, gameState.isMuted, gameState.isPaused]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -264,12 +263,11 @@ export const SnakeGame: React.FC = () => {
     gridWidth,
     gridHeight,
     moveSnake,
-    isMuted,
   ]);
 
   const startGame = () => {
-    const { position, type, image } = generateFruit([{ x: 5, y: 5 }]); // Pass initial snake
-    setGameState({
+    const { position, type, image } = generateFruit([{ x: 5, y: 5 }]);
+    setGameState((prev) => ({
       snake: [{ x: 5, y: 5 }],
       fruit: position,
       fruitType: type,
@@ -280,13 +278,13 @@ export const SnakeGame: React.FC = () => {
       scoreCount: {},
       gameOver: false,
       isPaused: false,
-      isMuted,
-    });
+      isMuted: prev.isMuted,
+    }));
     speedRef.current = INITIAL_SPEED;
     setIsPlaying(true);
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
-      if (!isMuted) {
+      if (!gameState.isMuted) {
         audioRef.current.play();
       }
     }
@@ -299,7 +297,6 @@ export const SnakeGame: React.FC = () => {
 
   const resetGame = () => {
     setIsPlaying(false);
-    setIsMuted(false);
     if (gameCardRef.current) {
       gameCardRef.current.blur();
     }
@@ -310,7 +307,6 @@ export const SnakeGame: React.FC = () => {
   };
 
   const toggleMute = () => {
-    setIsMuted((prev) => !prev);
     setGameState((prev) => ({ ...prev, isMuted: !prev.isMuted }));
   };
 
@@ -454,7 +450,7 @@ export const SnakeGame: React.FC = () => {
                         onToggleMute={toggleMute}
                         onReset={resetGame}
                         isPaused={gameState.isPaused}
-                        isMuted={isMuted}
+                        isMuted={gameState.isMuted}
                       />
                     </div>
                   )}
