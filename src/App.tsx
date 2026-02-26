@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { LazySection } from "@/components/ui/lazy-section";
 import { Hero } from "@/components/sections/Hero";
 import { CompanyOverview } from "@/components/sections/CompanyOverview";
 import { Portfolio } from "@/components/sections/Portfolio";
@@ -48,13 +49,27 @@ function App() {
                   <Hero />
                   <CompanyOverview />
                   <Executives />
-                  <Portfolio />
-                  <SnakeGame />
-                  <MarketSentiment />
-                  <Analysis />
-                  <Distribution />
-                  <FAQ />
-                  <Reports />
+                  <LazySection>
+                    <Portfolio />
+                  </LazySection>
+                  <LazySection>
+                    <SnakeGame />
+                  </LazySection>
+                  <LazySection>
+                    <MarketSentiment />
+                  </LazySection>
+                  <LazySection>
+                    <Analysis />
+                  </LazySection>
+                  <LazySection>
+                    <Distribution />
+                  </LazySection>
+                  <LazySection>
+                    <FAQ />
+                  </LazySection>
+                  <LazySection>
+                    <Reports />
+                  </LazySection>
                 </main>
 
                 <Footer />
