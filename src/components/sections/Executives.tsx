@@ -1,5 +1,5 @@
 import React from "react";
-import { TEAM_MEMBERS, CONTENT } from "@/lib/constants";
+import { TEAM_MEMBERS, CONTENT } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { Tag } from "@/components/ui/tag";
 import { ProfileCard } from "../ui/profile-card";

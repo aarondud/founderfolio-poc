@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   ReferenceDot,
 } from "recharts";
-import { CHART_DATA, CONTENT, MONTH_NAMES } from "@/lib/constants";
+import { CHART_DATA, CONTENT, MONTH_NAMES } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
 import { ChartTooltip } from "@/components/ui/chart-tooltip";

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Position } from "./types";
-import { FOUNDER_FOLIO_LOGO } from "@/lib/constants";
+import { FOUNDER_FOLIO_LOGO } from "@/lib";
 
 interface GameCanvasProps {
   snake: Position[];

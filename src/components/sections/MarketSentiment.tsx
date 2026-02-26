@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MessageSquareQuote, ChevronLeft, ChevronRight } from "lucide-react";
-import { MARKET_ANALYSIS, KEYNOTE_ANALYSIS, CONTENT } from "@/lib/constants";
+import { MARKET_ANALYSIS, KEYNOTE_ANALYSIS, CONTENT } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { Tag } from "@/components/ui/tag";
 import {

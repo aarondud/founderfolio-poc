@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Twitter, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FOUNDER_FOLIO_LOGO_DARK } from "@/lib/constants";
+import { FOUNDER_FOLIO_LOGO_DARK } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 
 export const Footer: React.FC = () => {

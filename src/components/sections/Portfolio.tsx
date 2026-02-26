@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { CONTENT } from "@/lib/constants";
+import { CONTENT } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
 import { Tag } from "@/components/ui/tag";

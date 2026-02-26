@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Play, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { GAME_OVER_MESSAGES } from "@/lib/constants";
+import { GAME_OVER_MESSAGES } from "@/lib";
 import { GameOverScreenProps } from "./types";
 
 interface ExtendedGameOverScreenProps extends GameOverScreenProps {

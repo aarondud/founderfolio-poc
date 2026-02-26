@@ -6,7 +6,7 @@ import {
   CAROUSEL_IMAGES_ROW2,
   CAROUSEL_IMAGES_ROW3,
   FOUNDER_FOLIO_LOGO,
-} from "@/lib/constants";
+} from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { Tag } from "@/components/ui/tag";
 import { Card, CardContent } from "@/components/ui/card";

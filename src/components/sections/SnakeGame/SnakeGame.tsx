@@ -6,7 +6,7 @@ import { GameCanvas } from "./GameCanvas";
 import { GameControls } from "./GameControls";
 import { GameOverScreen } from "./GameOverScreen";
 import { GameState, Position } from "./types";
-import { COMBINED_FRUITS, CONTENT } from "@/lib/constants";
+import { COMBINED_FRUITS, CONTENT } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { Tag } from "@/components/ui/tag";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";

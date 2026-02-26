@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { CONTENT, FAQ_DATA } from "@/lib/constants";
+import { CONTENT, FAQ_DATA } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
 import { Tag } from "../ui/tag";

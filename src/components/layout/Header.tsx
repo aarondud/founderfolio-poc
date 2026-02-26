@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { FOUNDER_FOLIO_LOGO } from "@/lib/constants";
+import { FOUNDER_FOLIO_LOGO } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 
 interface NavLink {

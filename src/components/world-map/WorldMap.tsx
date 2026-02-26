@@ -15,7 +15,7 @@ import {
   ArrowUpRight,
   ShieldCheck,
 } from "lucide-react";
-import { MARKET_LOCATIONS } from "@/lib/constants";
+import { MARKET_LOCATIONS } from "@/lib";
 import {
   ComposableMap,
   Geographies,

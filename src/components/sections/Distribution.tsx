@@ -1,6 +1,6 @@
 import React from "react";
 import { Globe } from "lucide-react";
-import { CONTENT, HEATMAP_DATA, HEATMAP_COLORS } from "@/lib/constants";
+import { CONTENT, HEATMAP_DATA, HEATMAP_COLORS } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
 import { ChartTooltip } from "@/components/ui/chart-tooltip";

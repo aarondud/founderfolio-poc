@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { MARKET_LOCATIONS, HERO_IMAGES } from "@/lib/constants";
+import { MARKET_LOCATIONS, HERO_IMAGES } from "@/lib";
 
 // Reusable Floating Image with Arrow Component
 interface FloatingImageWithArrowProps {
