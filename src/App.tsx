@@ -20,6 +20,7 @@ import { SnakeGame } from "@/components/sections/SnakeGame/SnakeGame";
 import { Reports } from "@/components/sections/Reports";
 import FAQ from "@/components/sections/FAQ";
 import Demo from "@/components/sections/Demo";
+import NotFound from "@/components/sections/NotFound";
 
 import "./App.css";
 
@@ -83,6 +84,18 @@ function App() {
                 <Header demoPage />
                 <main className="flex-1 pt-16">
                   <Demo />
+                </main>
+                <Footer />
+              </div>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <div className="min-h-screen flex flex-col">
+                <Header demoPage />
+                <main className="flex-1 pt-16">
+                  <NotFound />
                 </main>
                 <Footer />
               </div>
