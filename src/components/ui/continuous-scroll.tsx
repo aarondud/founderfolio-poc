@@ -1,6 +1,6 @@
 // components/ui/continuous-scroll.tsx
 import React, { useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 import { ScrollArea } from "./scroll-area";
 
 interface ContinuousScrollProps {
