@@ -40,22 +40,18 @@ const gamepadSvg = `
 const gamepadBase64 = `data:image/svg+xml;base64,${btoa(gamepadSvg)}`;
 
 export const SnakeGame: React.FC = () => {
-  const [gameState, setGameState] = useState<GameState>(() => {
-    const fruitData =
-      COMBINED_FRUITS[Math.floor(Math.random() * COMBINED_FRUITS.length)];
-    return {
-      snake: [{ x: 5, y: 5 }],
-      fruit: { x: 5, y: 5 }, // Temporary, will be overwritten by generateFruit
-      fruitType: fruitData.name,
-      fruitImage: fruitData.image,
-      direction: "RIGHT",
-      nextDirection: "RIGHT",
-      score: 0,
-      scoreCount: {},
-      gameOver: false,
-      isPaused: false,
-      isMuted: false,
-    };
+  const [gameState, setGameState] = useState<GameState>({
+    snake: [{ x: 5, y: 5 }],
+    fruit: { x: 5, y: 5 },
+    fruitType: COMBINED_FRUITS[0].name,
+    fruitImage: COMBINED_FRUITS[0].image,
+    direction: "RIGHT",
+    nextDirection: "RIGHT",
+    score: 0,
+    scoreCount: {},
+    gameOver: false,
+    isPaused: false,
+    isMuted: false,
   });
 
   const [isPlaying, setIsPlaying] = useState(false);
