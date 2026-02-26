@@ -10,6 +10,7 @@ import { COMBINED_FRUITS, CONTENT } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { Tag } from "@/components/ui/tag";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const INITIAL_SPEED = 150;
 
@@ -70,7 +71,7 @@ export const SnakeGame: React.FC = () => {
     gameOverAudioRef.current = new Audio("/game-over.mp3");
   }, []);
 
-  const isMobile = useMemo(() => window.innerWidth <= 768, []);
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   const cardWidth = useMemo(
     () => Math.min(window.innerWidth, CARD_WIDTH) - CARD_PADDING,

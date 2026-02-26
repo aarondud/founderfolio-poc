@@ -1,7 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { CONTENT } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Tag } from "@/components/ui/tag";
 import WorldMap from "@/components/world-map/WorldMap";
 import { CircleDollarSign } from "lucide-react";
@@ -10,25 +11,14 @@ type Position = { mapX: number; mapY: number };
 
 export const Portfolio: React.FC = () => {
   const { sectionRef, isInView } = useSectionAnimation();
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
-  const [tooltipContent, setTooltipContent] = useState<React.ReactNode | null>(
-    null,
-  );
+  const [tooltipContent, setTooltipContent] = useState<React.ReactNode | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState<Position | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [activeMarker, setActiveMarker] = useState<string | null>(null);
   const mapRef = useRef<{
     handleMarkerInteraction: (markerName: string) => void;
   }>(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   return (
     <section
