@@ -99,7 +99,7 @@ export const CONTENT = {
     sub: "Our FY25 performance snapshot shows key metrics—proposals, engagements, and pipeline health. Hover over data points for context on what each milestone means.",
     body: null,
   },
-  results: {
+  distribution: {
     tag: "Distribution",
     header: "Where we invest. Geographic distribution of our portfolio.",
     sub: `Our portfolio spans major startup ecosystems globally. We believe in backing founders wherever they are, with deep expertise in key markets.`,

@@ -25,7 +25,7 @@ const mobileNavLinks: NavLink[] = [
   { text: "Market Simulator", href: `#${SECTION_IDS.SIMULATOR}` },
   { text: "Market Sentiment", href: `#${SECTION_IDS.MARKET_SENTIMENT}` },
   { text: "Analysis", href: `#${SECTION_IDS.ANALYSIS}` },
-  { text: "Distribution", href: `#${SECTION_IDS.RESULTS}` },
+  { text: "Distribution", href: `#${SECTION_IDS.DISTRIBUTION}` },
   { text: "Reports", href: `#${SECTION_IDS.REPORTS}` },
 ];
 

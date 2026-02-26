@@ -175,20 +175,20 @@ const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => (
   </div>
 );
 
-export const Results: React.FC = () => {
+export const Distribution: React.FC = () => {
   const { sectionRef, isInView } = useSectionAnimation();
 
   return (
     <section
-      id={SECTION_IDS.RESULTS}
+      id={SECTION_IDS.DISTRIBUTION}
       ref={sectionRef}
       className="container-section slide-up"
     >
       {/* Section Tag */}
-      <Tag icon={Globe} text={CONTENT.results.tag} />
-      <h2 className="section-title">{CONTENT.results.header}</h2>
+      <Tag icon={Globe} text={CONTENT.distribution.tag} />
+      <h2 className="section-title">{CONTENT.distribution.header}</h2>
       <p className="text-xl mb-8 text-muted-foreground max-w-5xl mx-auto">
-        {CONTENT.results.sub}
+        {CONTENT.distribution.sub}
       </p>
       <Card className="bg-card p-4 md:p-8 max-w-6xl mx-auto my-8">
         <TreemapAndText isInView={isInView} />

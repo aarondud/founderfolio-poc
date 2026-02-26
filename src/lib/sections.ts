@@ -5,7 +5,7 @@ export const SECTION_IDS = {
   SIMULATOR: "simulator",
   MARKET_SENTIMENT: "market-sentiment",
   ANALYSIS: "analysis",
-  RESULTS: "results",
+  DISTRIBUTION: "distribution",
   FAQ: "faq",
   REPORTS: "reports",
 } as const;

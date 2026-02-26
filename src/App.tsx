@@ -7,7 +7,7 @@ import { CompanyOverview } from "@/components/sections/CompanyOverview";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Executives } from "@/components/sections/Executives";
 import { Analysis } from "@/components/sections/Analysis";
-import { Results } from "@/components/sections/Results";
+import { Distribution } from "@/components/sections/Distribution";
 import { MarketSentiment } from "@/components/sections/MarketSentiment";
 import { SnakeGame } from "@/components/sections/SnakeGame/SnakeGame";
 import { Reports } from "@/components/sections/Reports";
@@ -35,7 +35,7 @@ function App() {
                   <SnakeGame />
                   <MarketSentiment />
                   <Analysis />
-                  <Results />
+                  <Distribution />
                   <FAQ />
                   <Reports />
                 </main>
