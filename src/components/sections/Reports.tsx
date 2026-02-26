@@ -5,15 +5,9 @@ import { SECTION_IDS } from "@/lib/sections";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
 import { ExternalLink } from "lucide-react";
 
-const PitchDeckPDF = "https://placehold.co/600x800/004838/E2FB6C?text=FounderFolio+Pitch+Deck";
-
 export const Reports: React.FC = () => {
   const { sectionRef } = useSectionAnimation();
   const navigate = useNavigate();
-
-  const handlePdfOpen = (pdfPath: string) => {
-    window.open(pdfPath, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <section id={SECTION_IDS.REPORTS} ref={sectionRef}>
@@ -30,7 +24,7 @@ export const Reports: React.FC = () => {
             <Button
               size="lg"
               className="text-lg px-8 py-7 bg-white text-primary border-none hover:bg-white/90 transition-colors duration-200 flex items-center gap-2 whitespace-nowrap"
-              onClick={() => handlePdfOpen(PitchDeckPDF)}
+              onClick={() => navigate("/demo")}
             >
               Pitch Deck
               <ExternalLink className="w-5 h-5" />
