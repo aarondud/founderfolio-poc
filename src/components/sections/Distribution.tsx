@@ -140,10 +140,7 @@ const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => {
             content={<CustomizedContent />}
             isAnimationActive={shouldAnimate}
           >
-            <Tooltip
-              content={<CustomTooltip />}
-              isAnimationActive={false}
-            />
+            <Tooltip content={<CustomTooltip />} />
           </Treemap>
         </ResponsiveContainer>
       </div>

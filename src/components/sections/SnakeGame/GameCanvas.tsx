@@ -34,7 +34,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
   const canvasHeight = cellSize * gridHeight;
 
   const [snakeHeadImage, setSnakeHeadImage] = useState<HTMLImageElement | null>(
-    null
+    null,
   );
 
   // Load snake head image
@@ -111,7 +111,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
             x,
             y,
             x + cellSize,
-            y + cellSize
+            y + cellSize,
           );
           headGradient.addColorStop(0, "#E2FB6C");
           headGradient.addColorStop(1, "#C8E05A");
@@ -123,13 +123,13 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({
             x + cellSize / 4 - eyeSize / 2,
             y + cellSize / 3,
             eyeSize,
-            eyeSize
+            eyeSize,
           );
           ctx.fillRect(
             x + (3 * cellSize) / 4 - eyeSize / 2,
             y + cellSize / 3,
             eyeSize,
-            eyeSize
+            eyeSize,
           );
         }
         ctx.restore();

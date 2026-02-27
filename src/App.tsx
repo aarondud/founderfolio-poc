@@ -37,69 +37,69 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="min-h-screen flex flex-col">
-                <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="min-h-screen flex flex-col">
+              <Header />
 
-                <main className="flex-1">
-                  <Hero />
-                  <CompanyOverview />
-                  <Executives />
-                  <LazySection>
-                    <Portfolio />
-                  </LazySection>
-                  <LazySection>
-                    <SnakeGame />
-                  </LazySection>
-                  <LazySection>
-                    <MarketSentiment />
-                  </LazySection>
-                  <LazySection>
-                    <Analysis />
-                  </LazySection>
-                  <LazySection>
-                    <Distribution />
-                  </LazySection>
-                  <LazySection>
-                    <FAQ />
-                  </LazySection>
-                  <LazySection>
-                    <Reports />
-                  </LazySection>
-                </main>
+              <main className="flex-1">
+                <Hero />
+                <CompanyOverview />
+                <Executives />
+                <LazySection>
+                  <Portfolio />
+                </LazySection>
+                <LazySection>
+                  <SnakeGame />
+                </LazySection>
+                <LazySection>
+                  <MarketSentiment />
+                </LazySection>
+                <LazySection>
+                  <Analysis />
+                </LazySection>
+                <LazySection>
+                  <Distribution />
+                </LazySection>
+                <LazySection>
+                  <FAQ />
+                </LazySection>
+                <LazySection>
+                  <Reports />
+                </LazySection>
+              </main>
 
-                <Footer />
-              </div>
-            }
-          />
-          <Route
-            path="/demo"
-            element={
-              <div className="min-h-screen flex flex-col">
-                <Header demoPage />
-                <main className="flex-1 pt-16">
-                  <Demo />
-                </main>
-                <Footer />
-              </div>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <div className="min-h-screen flex flex-col">
-                <Header demoPage />
-                <main className="flex-1 pt-16">
-                  <NotFound />
-                </main>
-                <Footer />
-              </div>
-            }
-          />
-        </Routes>
+              <Footer />
+            </div>
+          }
+        />
+        <Route
+          path="/demo"
+          element={
+            <div className="min-h-screen flex flex-col">
+              <Header demoPage />
+              <main className="flex-1 pt-16">
+                <Demo />
+              </main>
+              <Footer />
+            </div>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <div className="min-h-screen flex flex-col">
+              <Header demoPage />
+              <main className="flex-1 pt-16">
+                <NotFound />
+              </main>
+              <Footer />
+            </div>
+          }
+        />
+      </Routes>
     </Router>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChartBar } from "lucide-react";
 import {
   LineChart,
@@ -11,6 +11,7 @@ import {
 import { CHART_DATA, CONTENT, MONTH_NAMES } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { useSectionAnimation } from "@/hooks/useSectionAnimation";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { ChartTooltip } from "@/components/ui/chart-tooltip";
 import { Tag } from "../ui/tag";
 import { CardContent } from "../ui/card";
@@ -25,16 +26,17 @@ interface CustomTooltipProps {
   label?: string;
 }
 
-const CustomTooltip: React.FC<CustomTooltipProps> = ({
+const CustomTooltip: React.FC<CustomTooltipProps & { className?: string }> = ({
   active,
   payload,
   label,
+  className,
 }) => {
   if (active && payload && payload.length) {
     const dataPoint = CHART_DATA.find((item) => item.month === label);
 
     return (
-      <ChartTooltip className="max-w-xs">
+      <ChartTooltip className={`max-w-xs ${className ?? ""}`}>
         <p className="font-semibold">
           {MONTH_NAMES[label as keyof typeof MONTH_NAMES] || label}
         </p>
@@ -59,6 +61,10 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
 
 export const Analysis: React.FC = () => {
   const { sectionRef, isInView } = useSectionAnimation();
+  const isMobile = useMediaQuery("(max-width: 767px)");
+  const [mobileTooltipIndex, setMobileTooltipIndex] = useState<number | null>(
+    null,
+  );
   const hasAnimated = useRef(false);
 
   useEffect(() => {
@@ -67,7 +73,50 @@ export const Analysis: React.FC = () => {
     }
   }, [isInView]);
 
-  const shouldAnimate = isInView && !hasAnimated.current;
+  const handleMobileDotTap = (index: number) => {
+    if (!isMobile) return;
+
+    setMobileTooltipIndex(index);
+  };
+
+  const renderMobileDot = (props: any) => {
+    const { index, cx, cy } = props;
+
+    if (typeof index !== "number" || cx == null || cy == null) {
+      return null;
+    }
+
+    const handleTap = () => {
+      handleMobileDotTap(index);
+    };
+
+    return (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={24}
+        fill="transparent"
+        stroke="transparent"
+        style={{
+          touchAction: "manipulation",
+          WebkitUserSelect: "none",
+          userSelect: "none",
+        }}
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          handleTap();
+        }}
+        onTouchStart={(event) => {
+          const touch = event.touches[0];
+          if (!touch) return;
+          event.preventDefault();
+          event.stopPropagation();
+          handleTap();
+        }}
+      />
+    );
+  };
 
   return (
     <section
@@ -103,10 +152,10 @@ export const Analysis: React.FC = () => {
         </div>
 
         {/* Chart and Callout Container */}
-        <div className="w-full mx-auto outline-none focus:outline-none focus-visible:outline-none">
+        <div className="w-full mx-auto">
           {/* Line Chart */}
-          <div className="w-full min-w-0 outline-none focus:outline-none focus-visible:outline-none">
-            <div className="transition-opacity duration-1000 outline-none focus:outline-none focus-visible:outline-none">
+          <div className="w-full min-w-0">
+            <div className="transition-opacity duration-1000">
               <ResponsiveContainer width="100%" height={400}>
                 <LineChart
                   data={CHART_DATA}
@@ -120,16 +169,18 @@ export const Analysis: React.FC = () => {
                     scale="point"
                     padding={{ left: 10, right: 10 }}
                   />
-                  <Tooltip
-                    content={<CustomTooltip />}
-                    isAnimationActive={false}
-                  />
+                  {!isMobile && (
+                    <Tooltip
+                      content={<CustomTooltip />}
+                      isAnimationActive={false}
+                    />
+                  )}
                   <Line
                     type="monotone"
                     dataKey="value"
                     stroke="#E2FB6C"
                     strokeWidth={3}
-                    dot={false}
+                    dot={isMobile ? (renderMobileDot as any) : false}
                     activeDot={{
                       r: 8,
                       fill: "#E2FB6C",
@@ -137,7 +188,7 @@ export const Analysis: React.FC = () => {
                       strokeWidth: 2,
                     }}
                     animationDuration={2000}
-                    isAnimationActive={shouldAnimate}
+                    isAnimationActive={isInView && !hasAnimated.current}
                   />
                   {CHART_DATA.filter(
                     (data) => data.highlight && data.highlight.length > 0,
@@ -154,11 +205,26 @@ export const Analysis: React.FC = () => {
                   ))}
                 </LineChart>
               </ResponsiveContainer>
+              {isMobile && mobileTooltipIndex !== null && (
+                <div className="mt-6 flex justify-center">
+                  <CustomTooltip
+                    active
+                    label={CHART_DATA[mobileTooltipIndex].month}
+                    payload={[
+                      {
+                        value: CHART_DATA[mobileTooltipIndex].value,
+                        dataKey: "value",
+                      },
+                    ]}
+                    className="chart-tooltip-fade"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
           {/* Callout Card */}
-          <div className="mt-12 max-w-xs md:max-w-5xl mx-auto">
+          <div className="mt-6 max-w-xs md:max-w-5xl mx-auto">
             <Card className="bg-accent/10 border border-accent/20 backdrop-blur-sm">
               <CardContent className="p-4 md:p-8 text-center text-lg md:text-xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">

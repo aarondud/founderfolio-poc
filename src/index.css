@@ -16,9 +16,20 @@
     @apply border-card;
   }
 
-  svg:focus,
-  svg:focus-visible {
-    outline: none;
+  .recharts-wrapper,
+  .recharts-wrapper svg,
+  .recharts-wrapper svg:focus,
+  .recharts-wrapper svg:focus-visible,
+  .recharts-surface,
+  .recharts-surface:focus,
+  .recharts-surface:focus-visible {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .recharts-wrapper:focus,
+  .recharts-wrapper:focus-visible {
+    outline: none !important;
   }
 
   body {
@@ -302,4 +313,27 @@
     animation: accordion-up 0.3s cubic-bezier(0.87, 0, 0.13, 1);
     overflow: hidden;
   }
+}
+
+.recharts-wrapper *:focus {
+  outline: none !important;
+}
+
+.recharts-surface:focus {
+  outline: none !important;
+}
+
+@keyframes chart-tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-tooltip-fade {
+  animation: chart-tooltip-fade-in 180ms ease-out;
 }
