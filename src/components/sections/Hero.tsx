@@ -114,7 +114,7 @@ export const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative h-[112vh] md:h-[125vh] md:min-h-[calc(125vh-64px)] pt-16 md:pt-24 pb-8 md:pb-16 overflow-hidden">
+    <section className="relative h-[125vh] md:min-h-[calc(125vh-64px)] pt-16 md:pt-24 pb-8 md:pb-16 overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 bg-[#EBEDE8] grid-pattern-large"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col">
