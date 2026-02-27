@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { ChartBar } from "lucide-react";
 import {
   LineChart,
@@ -59,6 +59,15 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({
 
 export const Analysis: React.FC = () => {
   const { sectionRef, isInView } = useSectionAnimation();
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated.current) {
+      hasAnimated.current = true;
+    }
+  }, [isInView]);
+
+  const shouldAnimate = isInView && !hasAnimated.current;
 
   return (
     <section
@@ -128,7 +137,7 @@ export const Analysis: React.FC = () => {
                       strokeWidth: 2,
                     }}
                     animationDuration={2000}
-                    isAnimationActive={isInView}
+                    isAnimationActive={shouldAnimate}
                   />
                   {CHART_DATA.filter(
                     (data) => data.highlight && data.highlight.length > 0,

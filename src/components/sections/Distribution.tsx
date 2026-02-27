@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Globe } from "lucide-react";
 import { CONTENT, HEATMAP_DATA, HEATMAP_COLORS } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
@@ -115,6 +115,16 @@ const CustomizedContent = (props: CustomizedContentProps) => {
 };
 
 const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => {
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated.current) {
+      hasAnimated.current = true;
+    }
+  }, [isInView]);
+
+  const shouldAnimate = isInView && !hasAnimated.current;
+
   return (
     <div className="flex flex-col md:flex-row gap-0 md:gap-12 items-center md:items-stretch">
       {/* Treemap Column */}
@@ -128,7 +138,7 @@ const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => {
             stroke="#EBEDE8"
             fill="#004838"
             content={<CustomizedContent />}
-            isAnimationActive={isInView}
+            isAnimationActive={shouldAnimate}
           >
             <Tooltip
               content={<CustomTooltip />}
