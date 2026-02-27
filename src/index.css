@@ -16,6 +16,11 @@
     @apply border-card;
   }
 
+  svg:focus,
+  svg:focus-visible {
+    outline: none;
+  }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     @apply bg-background text-body;

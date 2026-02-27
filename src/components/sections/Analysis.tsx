@@ -94,10 +94,10 @@ export const Analysis: React.FC = () => {
         </div>
 
         {/* Chart and Callout Container */}
-        <div className="w-full mx-auto">
+        <div className="w-full mx-auto outline-none focus:outline-none focus-visible:outline-none">
           {/* Line Chart */}
-          <div className="w-full min-w-0">
-            <div className="transition-opacity duration-1000">
+          <div className="w-full min-w-0 outline-none focus:outline-none focus-visible:outline-none">
+            <div className="transition-opacity duration-1000 outline-none focus:outline-none focus-visible:outline-none">
               <ResponsiveContainer width="100%" height={400}>
                 <LineChart
                   data={CHART_DATA}
