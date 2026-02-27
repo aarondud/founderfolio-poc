@@ -343,7 +343,7 @@ const WorldMap = forwardRef<
                 style={{
                   cursor: "pointer",
                   opacity: pinsAnimated ? 1 : 0,
-                  transform: `translate(-${pinSize}px, -${pinSize}px) scale(${pinsAnimated ? 1 : 0})`,
+                  transform: `translate(-${pinSize}px, -${pinSize}px) scale(${pinsAnimated ? 1 : 0}) translateZ(0)`,
                   transformOrigin: `${pinSize}px ${pinSize}px`,
                   transition: `opacity 0.3s ease-out ${delay}ms, transform 0.3s ease-out ${delay}ms`,
                 }}
