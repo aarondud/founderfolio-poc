@@ -64,38 +64,38 @@ export const GameControls: React.FC<GameControlsProps> = ({
             variant="ghost" 
             size="icon" 
             onClick={onMoveUp}
-            className="mb-2 bg-card/80"
+            className="mb-2 bg-card/80 h-16 w-16"
             aria-label="Move up"
           >
-            <ArrowUp className="h-6 w-6" />
+            <ArrowUp className="h-10 w-10" />
           </Button>
           <div className="flex space-x-4">
             <Button 
               variant="ghost" 
               size="icon" 
               onClick={onMoveLeft}
-              className="bg-card/80"
+              className="bg-card/80 h-16 w-16"
               aria-label="Move left"
             >
-              <ArrowLeft className="h-6 w-6" />
+              <ArrowLeft className="h-10 w-10" />
             </Button>
             <Button 
               variant="ghost" 
               size="icon" 
               onClick={onMoveDown}
-              className="bg-card/80"
+              className="bg-card/80 h-16 w-16"
               aria-label="Move down"
             >
-              <ArrowDown className="h-6 w-6" />
+              <ArrowDown className="h-10 w-10" />
             </Button>
             <Button 
               variant="ghost" 
               size="icon" 
               onClick={onMoveRight}
-              className="bg-card/80"
+              className="bg-card/80 h-16 w-16"
               aria-label="Move right"
             >
-              <ArrowRight className="h-6 w-6" />
+              <ArrowRight className="h-10 w-10" />
             </Button>
           </div>
         </div>
