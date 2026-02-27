@@ -111,7 +111,10 @@ export const Analysis: React.FC = () => {
                     scale="point"
                     padding={{ left: 10, right: 10 }}
                   />
-                  <Tooltip content={<CustomTooltip />} />
+                  <Tooltip
+                    content={<CustomTooltip />}
+                    isAnimationActive={false}
+                  />
                   <Line
                     type="monotone"
                     dataKey="value"

@@ -24,26 +24,12 @@ export const MARKET_LOCATIONS: MarketLocation[] = [
       "HQ location - highest deal flow. Leading tech ecosystem with access to top-tier startups and investors.",
     image:
       "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200&h=200&fit=crop&fm=webp",
-    priority: "High Priority",
-    investments: 2,
-    sentiment: "Hot Market",
-    colour: TICKER_COLOUR.gain,
-    markerPosition: { x: -122.419416, y: 37.774929 },
-    tooltipOffset: { x: 100, y: 100 },
-  },
-  {
-    name: "San Francisco HQ",
-    displayName: "San Francisco",
-    quote:
-      "San Francisco remains our headquarters and base for product development and customer success.",
-    image:
-      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200&h=200&fit=crop&fm=webp",
     priority: "Headquarters",
-    investments: 0,
+    investments: 2,
     sentiment: "Established",
     colour: TICKER_COLOUR.gain,
     markerPosition: { x: -122.419416, y: 37.774929 },
-    tooltipOffset: { x: -125, y: 0 },
+    tooltipOffset: { x: 100, y: 100 },
   },
   {
     name: "London",

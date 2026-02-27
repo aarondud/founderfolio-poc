@@ -114,14 +114,15 @@ const CustomizedContent = (props: CustomizedContentProps) => {
   );
 };
 
-const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => (
-  <div className="flex flex-col md:flex-row gap-0 md:gap-12 items-center md:items-stretch">
-    {/* Treemap Column */}
-    <div className="w-full md:flex-1 flex flex-col justify-center items-center">
-      <div className="w-full max-w-xs md:max-w-lg aspect-square bg-card text-card-foreground rounded-lg mx-auto">
-        <ResponsiveContainer width="100%" height="100%">
-          <Treemap
-            data={HEATMAP_DATA}
+const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => {
+  return (
+    <div className="flex flex-col md:flex-row gap-0 md:gap-12 items-center md:items-stretch">
+      {/* Treemap Column */}
+      <div className="w-full md:flex-1 flex flex-col justify-center items-center">
+        <div className="w-full max-w-xs md:max-w-lg aspect-square bg-card text-card-foreground rounded-lg mx-auto">
+          <ResponsiveContainer width="100%" height="100%">
+            <Treemap
+              data={HEATMAP_DATA}
             dataKey="size"
             aspectRatio={1}
             stroke="#EBEDE8"
@@ -129,7 +130,10 @@ const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => (
             content={<CustomizedContent />}
             isAnimationActive={isInView}
           >
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip
+              content={<CustomTooltip />}
+              isAnimationActive={false}
+            />
           </Treemap>
         </ResponsiveContainer>
       </div>
@@ -172,8 +176,9 @@ const TreemapAndText: React.FC<{ isInView: boolean }> = ({ isInView }) => (
         </div>
       </div>
     </div>
-  </div>
-);
+    </div>
+  );
+};
 
 export const Distribution: React.FC = () => {
   const { sectionRef, isInView } = useSectionAnimation();
