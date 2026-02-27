@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MessageSquareQuote, ChevronLeft, ChevronRight } from "lucide-react";
+import { MessageSquareQuote, ChevronLeft, ChevronRight, User } from "lucide-react";
 import { MARKET_ANALYSIS, KEYNOTE_ANALYSIS, CONTENT } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 import { Tag } from "@/components/ui/tag";
@@ -47,18 +47,14 @@ export const MarketSentiment: React.FC = () => {
           </h2>
         </div>
         <div className="flex justify-center items-center mt-4 -space-x-4">
-          <div className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-primary flex-shrink-0 z-10">
-            <img
-              src={KEYNOTE_ANALYSIS.image}
-              alt={KEYNOTE_ANALYSIS.name}
-              className="w-full h-full object-cover"
-            />
+          <div className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-primary flex-shrink-0 z-10 bg-primary flex items-center justify-center">
+            <User className="w-10 h-10 text-accent" />
           </div>
-          <div className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-primary flex-shrink-0">
+          <div className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-primary flex-shrink-0 bg-white flex items-center justify-center p-2">
             <img
               src={KEYNOTE_ANALYSIS.logo}
               alt={KEYNOTE_ANALYSIS.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
         </div>

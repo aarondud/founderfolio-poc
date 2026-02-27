@@ -51,7 +51,7 @@ export const KEYNOTE_ANALYSIS = {
   title: "Partner at Sequoia Capital",
   image:
     "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop",
-  logo: "https://cdn.brandfetch.io/idRkN5iMbE/w/200/h/200/theme/dark/icon.png?c=1dxbfHSJFAPEGdCLU4o5B",
+  logo: "https://sequoiacap.com/wp-content/uploads/sites/6/2021/11/cropped-cropped-android-chrome-512x512-1.png?w=192",
   quote:
     "FounderFolio is tackling a real pain point in venture—the chaos of managing deal flow. Any tool that helps investors stay organized and never miss an opportunity is worth a closer look.",
 };
