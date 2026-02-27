@@ -167,13 +167,15 @@ export const Footer: React.FC = () => {
               >
                 <Linkedin className="h-5 w-5" />
               </button>
-              <button
-                onClick={() => navigate("/demo")}
+              <a
+                href="https://github.com/aarondud/founderfolio-poc"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/60 hover:text-[#E2FB6C] transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
