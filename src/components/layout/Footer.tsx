@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Twitter, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FOUNDER_FOLIO_LOGO_DARK } from "@/lib";
+import { FOUNDER_FOLIO_LOGO } from "@/lib";
 import { SECTION_IDS } from "@/lib/sections";
 
 export const Footer: React.FC = () => {
@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center mb-6">
               <img
-                src={FOUNDER_FOLIO_LOGO_DARK}
+                src={FOUNDER_FOLIO_LOGO}
                 alt="FounderFolio Logo"
                 className="h-8 w-8"
               />

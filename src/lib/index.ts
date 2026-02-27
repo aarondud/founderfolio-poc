@@ -2,7 +2,6 @@
 // Content - copy, text, UI strings
 export {
   FOUNDER_FOLIO_LOGO,
-  FOUNDER_FOLIO_LOGO_DARK,
   MONTH_NAMES,
   GAME_OVER_MESSAGES,
   CONTENT,

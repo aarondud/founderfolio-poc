@@ -1,7 +1,5 @@
 export const FOUNDER_FOLIO_LOGO =
   "https://placehold.co/200x200/004838/E2FB6C?text=FF&font=playfair-display";
-export const FOUNDER_FOLIO_LOGO_DARK =
-  "https://placehold.co/200x200/004838/E2FB6C?text=FF&font=playfair-display";
 
 export const MONTH_NAMES: Record<string, string> = {
   Jan: "January",
