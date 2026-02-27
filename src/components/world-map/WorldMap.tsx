@@ -283,6 +283,16 @@ const WorldMap = forwardRef<
         }}
       >
         <Graticule stroke="#EBEDE8" strokeWidth={0.5} opacity={1} />
+        <defs>
+          {MARKET_LOCATIONS.map((marker, index) => {
+            const pinSize = isMobile ? 40 : 30;
+            return (
+              <clipPath key={marker.name} id={`clip-${index}`}>
+                <circle cx={pinSize} cy={pinSize} r={pinSize - 2} />
+              </clipPath>
+            );
+          })}
+        </defs>
         <Geographies geography="/world-110m.json">
           {({ geographies }) =>
             geographies.map((geo) => {
@@ -328,7 +338,6 @@ const WorldMap = forwardRef<
         {MARKET_LOCATIONS.map((marker, index) => {
           const pinSize = isMobile ? 40 : 30;
           const pinDimension = pinSize * 2;
-          const clipRadius = pinSize - 4;
           const delay = pinsAnimated ? index * 100 : 0;
           return (
             <Marker
@@ -339,11 +348,10 @@ const WorldMap = forwardRef<
               onTouchStart={() => handleMarkerInteraction(marker.name)}
             >
               <g
-                transform={`translate(-${pinSize}, -${pinSize})`}
                 style={{
                   cursor: "pointer",
                   opacity: pinsAnimated ? 1 : 0,
-                  transform: `translate(-${pinSize}px, -${pinSize}px) scale(${pinsAnimated ? 1 : 0}) translateZ(0)`,
+                  transform: `translate(-${pinSize}px, -${pinSize}px) scale(${pinsAnimated ? 1 : 0})`,
                   transformOrigin: `${pinSize}px ${pinSize}px`,
                   transition: `opacity 0.3s ease-out ${delay}ms, transform 0.3s ease-out ${delay}ms`,
                 }}
@@ -364,7 +372,7 @@ const WorldMap = forwardRef<
                     width={String(pinDimension)}
                     height={String(pinDimension)}
                     preserveAspectRatio="xMidYMid slice"
-                    clipPath={`circle(${clipRadius}px at ${pinSize}px ${pinSize}px)`}
+                    clipPath={`url(#clip-${index})`}
                   />
                 )}
               </g>
