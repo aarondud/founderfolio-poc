@@ -7,7 +7,6 @@ import {
 import { useEffect } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Hero } from "@/components/sections/Hero";
 import { CompanyOverview } from "@/components/sections/CompanyOverview";
@@ -37,8 +36,7 @@ const ScrollToTop = () => {
 function App() {
   return (
     <Router>
-      <ThemeProvider>
-        <ScrollToTop />
+      <ScrollToTop />
         <Routes>
           <Route
             path="/"
@@ -102,7 +100,6 @@ function App() {
             }
           />
         </Routes>
-      </ThemeProvider>
     </Router>
   );
 }
