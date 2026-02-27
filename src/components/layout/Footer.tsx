@@ -105,12 +105,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 flex flex-col items-center md:items-start">
               <li className="flex items-center">
                 <Mail className="h-4 w-4 mr-2 text-[#E2FB6C]" />
-                <a
-                  href="mailto:invest@founderfolio.com"
-                  className="footer-link"
-                >
-                  invest@founderfolio.com
-                </a>
+                <span className="footer-link">invest@founderfolio.com</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-4 w-4 mr-2 text-[#E2FB6C]" />
